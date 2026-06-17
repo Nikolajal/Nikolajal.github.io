@@ -1,0 +1,65 @@
+---
+layout: archive
+title: "Publications"
+title_it: "Pubblicazioni"
+title_fr: "Publications"
+permalink: /publications/
+author_profile: true
+---
+
+{% include base_path %}
+
+<div class="lang-block" data-lang="en">
+<p>
+  I've contributed to a fair number of papers through the ALICE collaboration, and I'm now adding to that list through ePIC. The selection below highlights the work I led or contributed to most directly. For the complete picture, head over to:
+</p>
+<ul>
+  <li><a href="https://inspirehep.net/authors/1890020" target="_blank"><strong>InspireHEP</strong></a> — the canonical particle physics record, kept up to date automatically</li>
+  <li><a href="https://orcid.org/0000-0001-9874-7249" target="_blank"><strong>ORCID</strong></a> — for everything cross-disciplinary</li>
+</ul>
+<h2>Selected publications</h2>
+</div>
+
+<div class="lang-block" data-lang="it" hidden>
+<p>
+  Ho contribuito a un buon numero di articoli attraverso la collaborazione ALICE, e ora sto aggiungendo a questa lista attraverso ePIC. La selezione qui sotto evidenzia il lavoro che ho guidato o a cui ho contribuito più direttamente. Per il quadro completo, visita:
+</p>
+<ul>
+  <li><a href="https://inspirehep.net/authors/1890020" target="_blank"><strong>InspireHEP</strong></a> — il registro canonico della fisica delle particelle, aggiornato automaticamente</li>
+  <li><a href="https://orcid.org/0000-0001-9874-7249" target="_blank"><strong>ORCID</strong></a> — per tutto ciò che è interdisciplinare</li>
+</ul>
+<h2>Pubblicazioni selezionate</h2>
+</div>
+
+<div class="lang-block" data-lang="fr" hidden>
+<p>
+  J'ai contribué à un bon nombre d'articles au sein de la collaboration ALICE, et j'en ajoute maintenant à cette liste via ePIC. La sélection ci-dessous met en avant les travaux que j'ai dirigés ou auxquels j'ai le plus directement contribué. Pour la liste complète, rendez-vous sur :
+</p>
+<ul>
+  <li><a href="https://inspirehep.net/authors/1890020" target="_blank"><strong>InspireHEP</strong></a> — le registre de référence en physique des particules, mis à jour automatiquement</li>
+  <li><a href="https://orcid.org/0000-0001-9874-7249" target="_blank"><strong>ORCID</strong></a> — pour tout ce qui est interdisciplinaire</li>
+</ul>
+<h2>Publications sélectionnées</h2>
+</div>
+
+<hr />
+
+{% if site.publication_category %}
+  {% for category in site.publication_category %}
+    {% assign title_shown = false %}
+    {% for post in site.publications reversed %}
+      {% if post.category != category[0] %}
+        {% continue %}
+      {% endif %}
+      {% unless title_shown %}
+        <h3>{{ category[1].title }}</h3>
+        {% assign title_shown = true %}
+      {% endunless %}
+      {% include archive-single.html %}
+    {% endfor %}
+  {% endfor %}
+{% else %}
+  {% for post in site.publications reversed %}
+    {% include archive-single.html %}
+  {% endfor %}
+{% endif %}

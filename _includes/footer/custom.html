@@ -1,0 +1,42 @@
+<!-- start custom footer snippets -->
+
+<a href="/sitemap/">Sitemap</a>
+
+<!-- LGBTQIA+ Progress Pride flag — a discreet, year-round show of support.
+     Official Quasar "Progress" variant (Wikimedia Commons, CC0), served locally.
+     Muted by default, full-colour on hover/focus. -->
+<img class="pride-flag" src="/images/pride-progress-flag.png"
+     width="30" height="19" loading="lazy" decoding="async"
+     alt="LGBTQIA+ Progress Pride flag">
+<style>
+  .pride-flag {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 0.6em;
+    height: 19px;
+    width: auto;
+    border-radius: 2px;
+    box-shadow: 0 0 0 1px rgba(0,0,0,0.08);
+    opacity: 0.55;
+    filter: saturate(0.7);
+    transition: opacity 0.2s ease, filter 0.2s ease, transform 0.2s ease;
+  }
+  .pride-flag:hover, .pride-flag:focus-visible {
+    opacity: 1;
+    filter: saturate(1);
+    transform: translateY(-1px);
+  }
+</style>
+
+<!-- Support for MatJax -->
+<script defer src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script"></script>
+
+<!-- Support for Mermaid -->
+<script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({startOnLoad:true, theme:'default'});
+    await mermaid.run({querySelector:'code.language-mermaid'});
+</script>
+
+<!-- end custom footer snippets -->

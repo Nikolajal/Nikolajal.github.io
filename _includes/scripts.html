@@ -1,0 +1,81 @@
+<script type="module" src="{{ base_path }}/assets/js/main.min.js"></script>
+<script>
+(function () {
+  var LANGS = ['en', 'it', 'fr'];
+  var DEFAULT_LANG = 'en';
+
+  var navTranslations = {
+    en: {
+      'nav.software':     'Software',
+      'nav.publications': 'Publications',
+      'nav.talks':        'Talks',
+      'nav.teaching':     'Teaching',
+      'nav.blog':         'Blog',
+      'nav.cv':           'CV',
+      'nav.aboutme':      'About me'
+    },
+    it: {
+      'nav.software':     'Software',
+      'nav.publications': 'Pubblicazioni',
+      'nav.talks':        'Talk',
+      'nav.teaching':     'Didattica',
+      'nav.blog':         'Blog',
+      'nav.cv':           'CV',
+      'nav.aboutme':      'Chi sono'
+    },
+    fr: {
+      'nav.software':     'Logiciels',
+      'nav.publications': 'Publications',
+      'nav.talks':        'Conférences',
+      'nav.teaching':     'Enseignement',
+      'nav.blog':         'Blog',
+      'nav.cv':           'CV',
+      'nav.aboutme':      'À propos'
+    }
+  };
+
+  function getCurrentLang() {
+    try { var s = localStorage.getItem('lang'); return LANGS.indexOf(s) !== -1 ? s : DEFAULT_LANG; }
+    catch (e) { return DEFAULT_LANG; }
+  }
+
+  function applyLang(lang) {
+    var blocks = document.querySelectorAll('.lang-block');
+    for (var i = 0; i < blocks.length; i++) {
+      if (blocks[i].getAttribute('data-lang') === lang) blocks[i].removeAttribute('hidden');
+      else blocks[i].setAttribute('hidden', '');
+    }
+    var t = navTranslations[lang] || navTranslations[DEFAULT_LANG];
+    var els = document.querySelectorAll('[data-i18n]');
+    for (var j = 0; j < els.length; j++) {
+      var key = els[j].getAttribute('data-i18n');
+      if (t[key]) els[j].textContent = t[key];
+    }
+    var btns = document.querySelectorAll('[data-lang-btn]');
+    for (var k = 0; k < btns.length; k++) {
+      var b = btns[k];
+      if (b.getAttribute('data-lang-btn') === lang) b.classList.add('lang-btn--active');
+      else b.classList.remove('lang-btn--active');
+    }
+    document.documentElement.lang = lang;
+  }
+
+  function setLang(lang) {
+    try { localStorage.setItem('lang', lang); } catch (e) {}
+    applyLang(lang);
+  }
+
+  document.addEventListener('click', function (e) {
+    var node = e.target;
+    while (node && node !== document) {
+      var l = node.getAttribute && node.getAttribute('data-lang-btn');
+      if (l && LANGS.indexOf(l) !== -1) { setLang(l); return; }
+      node = node.parentNode;
+    }
+  });
+
+  applyLang(getCurrentLang());
+}());
+</script>
+
+{% include analytics.html %}

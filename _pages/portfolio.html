@@ -1,0 +1,27 @@
+---
+layout: archive
+title: "Software"
+title_it: "Software"
+title_fr: "Logiciels"
+permalink: /portfolio/
+author_profile: true
+---
+
+{% include base_path %}
+
+<div class="lang-block" data-lang="en">
+<p>A selection of the code I've written, mostly C++ and mostly physics-adjacent. Everything below lives on <a href="https://github.com/Nikolajal">my GitHub</a> — feel free to poke around.</p>
+</div>
+
+<div class="lang-block" data-lang="it" hidden>
+<p>Una selezione del codice che ho scritto, principalmente C++ e per lo più legato alla fisica. Tutto il materiale qui sotto si trova su <a href="https://github.com/Nikolajal">GitHub</a> — sentiti libero di esplorare.</p>
+</div>
+
+<div class="lang-block" data-lang="fr" hidden>
+<p>Une sélection du code que j'ai écrit, principalement du C++ et la plupart du temps lié à la physique. Tout ce qui suit se trouve sur <a href="https://github.com/Nikolajal">mon GitHub</a> — n'hésitez pas à explorer.</p>
+</div>
+
+{% assign ordered_portfolio = site.portfolio | sort: 'order' %}
+{% for post in ordered_portfolio %}
+  {% include archive-single.html %}
+{% endfor %}

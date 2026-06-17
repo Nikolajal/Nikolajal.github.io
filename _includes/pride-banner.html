@@ -1,0 +1,42 @@
+<!-- ==========================================================================
+     PRIDE MONTH accent tint — TEMPORARY
+     Recolours the site's green accent into the rainbow flag for June only.
+     Self-gating: the JS below adds `.pride-month` to <html> only when the
+     visitor's local clock is in June, so it switches itself off on July 1
+     with NO redeploy needed.
+     To remove entirely: delete this file and its {% raw %}{% include pride-banner.html %}{% endraw %}
+     line in _layouts/default.html. Nothing else references it.
+     ========================================================================== -->
+<style>
+  /* rainbow used everywhere the green accent normally appears */
+  :root { --pride-flag: linear-gradient(90deg,
+      #e40303 0%, #ff8c00 20%, #ffed00 40%,
+      #008026 60%, #004dff 80%, #750787 100%); }
+
+  /* masthead bottom hairline -> rainbow strip */
+  .pride-month .masthead::after {
+    height: 3px;
+    background: var(--pride-flag);
+    opacity: 0.95;
+  }
+
+  /* selected nav item underline -> rainbow (includes the site title / name) */
+  .pride-month .masthead__menu-item.selected a,
+  .pride-month .masthead__menu-item.selected a:hover {
+    border-bottom: 2px solid transparent;
+    border-image: var(--pride-flag) 1;
+  }
+
+  /* nav hover accent -> warm pride coral instead of green */
+  .pride-month .masthead__menu-item a:hover {
+    color: #e40303;
+  }
+</style>
+<script>
+  /* June = month index 5. Visitor's local clock decides; nothing to remember
+     to undo. NB: only block comments in inline scripts — the compress layout
+     strips newlines, so a `//` comment swallows the rest of the script. */
+  if (new Date().getMonth() === 5) {
+    document.documentElement.classList.add('pride-month');
+  }
+</script>
